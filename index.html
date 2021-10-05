@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quoteboard</title>
-</head>
-<body>
-    Hello, quoteboard 👋
-</body>
+  </head>
+  <body>
+    <script
+      type="text/javascript"
+      data-app-id="JOw4b7VGvHk6DB0RnRV2aQ"
+      src="https://c64.assets-yammer.com/assets/platform_js_sdk.js"
+    ></script>
+
+    <span id="yammer-login"></span>
+    <script>
+      yam.connect.loginButton("#yammer-login", function (resp) {
+        if (resp.authResponse) {
+          document.getElementById("yammer-login").innerHTML =
+            "Welcome to Yammer!";
+        }
+      });
+    </script>
+  </body>
 </html>
