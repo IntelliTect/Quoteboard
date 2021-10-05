@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        #messages-container>div {
+            display: inline-block;
+            border: 1px solid grey;
+            padding: 4px;
+            margin: 8px;
+            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        }
+    </style>
+    <script type="text/javascript" data-app-id="JOw4b7VGvHk6DB0RnRV2aQ"
+        src="https://c64.assets-yammer.com/assets/platform_js_sdk.js"></script>
     <title>Quoteboard</title>
-  </head>
-  <body>
-    <script
-      type="text/javascript"
-      data-app-id="JOw4b7VGvHk6DB0RnRV2aQ"
-      src="https://c64.assets-yammer.com/assets/platform_js_sdk.js"
-    ></script>
+</head>
+
+<body>
 
     <span id="yammer-login"></span>
+    <div id="messages-container"></div>
+
     <script>
-      yam.connect.loginButton("#yammer-login", function (resp) {
-        if (resp.authResponse) {
-          document.getElementById("yammer-login").innerHTML =
-            "Welcome to Yammer!";
+        function parseMessages(messages) {
+            messagesContainer = document.getElementById("messages-container");
+            messages.forEach(message => {
+                console.log(message);
+                const plainBody = message.body.plain;
+                messagesContainer.innerHTML += `<div>${plainBody}</div>`;
+            })
         }
-      });
+
+        yam.connect.loginButton("#yammer-login", function (resp) {
+            if (resp.authResponse) {
+                document.getElementById("yammer-login").style.display = "none";
+
+                yam.platform.request({
+                    url: "search.json",
+                    method: "GET",
+                    data: {
+                        search: "quoteboard"
+                    },
+                    success: function (result) {
+                        const messages = result.messages.messages;
+                        parseMessages(messages)
+                    },
+                    error: function (result) {
+                        console.error(result)
+                    },
+                });
+            }
+        });
     </script>
-  </body>
+</body>
+
 </html>
