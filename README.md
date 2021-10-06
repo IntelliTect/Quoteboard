@@ -24,7 +24,7 @@ This post was largely ignored until several weeks later when another IntelliTect
 >
 > \- Alden
 
-[Joseph Riddle](github.com/joeriddles/), seeing this cry into the void and looking for ways to procrastinate vastly more important work, created a "slick" UI in aproximately 34 mintes (we timed it).
+[Joseph Riddle](https://github.com/joeriddles/), seeing this cry into the void and looking for ways to procrastinate vastly more important work, created a "slick" UI in aproximately 34 mintes (we timed it).
 
 The live version of this project is running on GitHub pages at https://intellitect.github.io/Quoteboard/. You will need to authenticate will a valid IntelliTect Microsoft account.
 
